@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import com.league.business.service.TeamService;
+import com.league.business.service.ITeamService;
 import com.league.data.dto.TeamDto;
 
 @Controller
 public class TeamController {
 	
 	@Autowired
-	private TeamService teamService;
+	private ITeamService teamService;
 
 	@GetMapping("addteam/{leagueID}")
 	public String addTeam(Model model,@PathVariable(name="leagueID") Long leagueID) {

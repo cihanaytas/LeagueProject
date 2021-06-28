@@ -19,9 +19,9 @@ public class TeamDto {
 	
 	@NotBlank(message = "Team City cannot be empty.")
 	private String city;
-	
-	
+		
 	private int numOfPlayers;
+	
 	private String leagueName;
 
 	

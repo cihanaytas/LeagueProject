@@ -1,16 +1,10 @@
 package com.league.business.impl;
 
 import java.util.List;
-import java.util.Optional;
-
 import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;import com.league.LeagueProjectApplication;
-import com.league.business.service.TeamService;
+import org.springframework.stereotype.Service;
+import com.league.business.service.ITeamService;
 import com.league.data.dto.TeamDto;
 import com.league.data.entity.League;
 import com.league.data.entity.Team;
@@ -19,7 +13,7 @@ import com.league.data.respository.TeamRepository;
 import com.league.utils.MyMapper;
 
 @Service
-public class TeamServiceImpl implements TeamService{
+public class TeamServiceImpl implements ITeamService{
 	
 	@Autowired 
 	private MyMapper mapper;
