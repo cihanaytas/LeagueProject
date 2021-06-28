@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>New League</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<hr>
+		<h2>Add New League</h2>
+
+		<form action="#" th:action="@{/saveleague}" th:object="${league}"
+			method="POST">
+			<input type="text" th:field="*{country}"
+				placeholder="Country" class="form-control mb-4 col-4">
+				<div th:if="${#fields.hasErrors('country')}" th:errors="*{country}" class="item fieldinvalid"
+				></div>
+				
+				<input type="text" th:field="*{leagueName}"
+				placeholder="League Name" class="form-control mb-4 col-4">
+				<div th:if="${#fields.hasErrors('leagueName')}" th:errors="*{leagueName}" class="item fieldinvalid"
+				></div>
+				
+				<input type="number" th:field="*{numOfTeams}"
+				placeholder="Number Of Players" class="form-control mb-4 col-4">
+				<div th:if="${#fields.hasErrors('numOfTeams')}" th:errors="*{numOfTeams}" class="item fieldinvalid"
+				></div>
+				
+				
+				<button type="submit" class="btn btn-info col-2"> Add League</button>
+		</form>
+		
+		<hr>
+		
+		<a th:href = "@{/}"> Back to Home Page</a>
+	</div>
+</body>
+</html>
