@@ -1,5 +1,6 @@
 package com.league.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
@@ -28,15 +29,16 @@ public class LeagueRestController {
 	@PostMapping("saveleague")
 	public ResponseEntity<?> saveLeague(@Valid  @RequestBody LeagueDto league,
 			BindingResult result) {
-
+		List<String> errors = new ArrayList<String>();
 		
 		if(result.hasErrors()) {
-		       List<String> errors = result.getAllErrors().stream().map(e -> e.getDefaultMessage()).collect(Collectors.toList());
+		       errors = result.getAllErrors().stream().map(e -> e.getDefaultMessage()).collect(Collectors.toList());
 		       return new ResponseEntity<>(errors, new HttpHeaders(), HttpStatus.BAD_REQUEST);       
 		}
 		
 		else if(leagueService.isExist(league.getLeagueName())) {
-			return new ResponseEntity<>("Bu lig isödfga", new HttpHeaders(), HttpStatus.BAD_REQUEST); }
+			  errors.add("This league already exist");
+			return new ResponseEntity<>(errors, new HttpHeaders(), HttpStatus.BAD_REQUEST); }
 		
 		
 		else {
