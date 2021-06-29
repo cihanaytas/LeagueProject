@@ -31,21 +31,21 @@ public class LeagueController {
 		return "league/NewLeague2";
 	}
 	
-	@PostMapping("saveleague")
+	@PostMapping("updateleague")
 	public String saveLeague(@Valid @ModelAttribute("league") LeagueDto leagueDto,
 			BindingResult result) {
 		if(result.hasErrors()) {
-			return "league/NewLeague";
+			return "league/UpdateLeague";
 		}
 		else {			
 			if(leagueDto.getLeagueID()!=0) {
-				if(leagueService.isExist(leagueDto.getCountry(), leagueDto.getLeagueID()))
-					return "league/NewLeague";
+				if(leagueService.isExist(leagueDto.getLeagueName(), leagueDto.getLeagueID()))
+					return "league/UpdateLeague";
 			}
 			
 			else {
 				if(leagueService.isExist(leagueDto.getLeagueName()));
-					return "league/NewLeague";
+					return "league/UpdateLeague";
 			}
 			
 			

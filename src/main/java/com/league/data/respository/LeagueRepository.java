@@ -7,8 +7,8 @@ import com.league.data.entity.League;
 
 public interface LeagueRepository extends CrudRepository<League, Long>{
  
-	@Query("select count(*) from League l where l.country= :country")
-	public int isExist(String country);
+	@Query("select count(*) from League l where l.leagueName= :leagueName")
+	public int isExist(String leagueName);
 
 
 }

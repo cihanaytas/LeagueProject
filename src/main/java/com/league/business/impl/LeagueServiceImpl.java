@@ -107,22 +107,22 @@ public class LeagueServiceImpl implements ILeagueService{
 	}
 
 	@Override
-	public boolean isExist(String country) {
-		if(leagueRepository.isExist(country)!=0)
+	public boolean isExist(String leagueName) {
+		if(leagueRepository.isExist(leagueName)!=0)
 			return true;
 		
 		return false;
 	}
 
 	@Override
-	public boolean isExist(String country, long leagueID) {
+	public boolean isExist(String leagueName, long leagueID) {
 		League league = leagueRepository.findById(leagueID).orElse(null);
 
 
-		if(country.equals(league.getCountry()))
+		if(leagueName.equals(league.getLeagueName()))
 			return false;
 		else 
-			return isExist(country);
+			return isExist(leagueName);
 	}
 
  	

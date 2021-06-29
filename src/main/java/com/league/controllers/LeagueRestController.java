@@ -25,16 +25,20 @@ public class LeagueRestController {
 	@Autowired
 	private ILeagueService leagueService;
 	
-	@PostMapping("saveleaguee")
+	@PostMapping("saveleague")
 	public ResponseEntity<?> saveLeague(@Valid  @RequestBody LeagueDto league,
 			BindingResult result) {
+
 		
 		if(result.hasErrors()) {
 		       List<String> errors = result.getAllErrors().stream().map(e -> e.getDefaultMessage()).collect(Collectors.toList());
-		       
-		        return new ResponseEntity<>(errors, new HttpHeaders(), HttpStatus.BAD_REQUEST);
-		        
+		       return new ResponseEntity<>(errors, new HttpHeaders(), HttpStatus.BAD_REQUEST);       
 		}
+		
+		else if(leagueService.isExist(league.getLeagueName())) {
+			return new ResponseEntity<>("Bu lig isödfga", new HttpHeaders(), HttpStatus.BAD_REQUEST); }
+		
+		
 		else {
 			leagueService.saveLeague(league);
 			//return new ResponseEntity<>(HttpStatus.OK);
